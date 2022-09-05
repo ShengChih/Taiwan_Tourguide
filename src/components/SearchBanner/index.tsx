@@ -9,8 +9,8 @@ import SearchBgImage from "./search_bg_img_1.png";
 import SearchLandingTextImage from "./search_landing_text.svg";
 import SearchSubtitleImage from "./search_subtitle.svg";
 import SearchIconImage from "./search_icon.svg";
-import LeftShadow from "./banner_left_shadow.png"
-import RightShadow from "./banner_right_shadow.png"
+//import LeftShadow from "./banner_left_shadow.png"
+//import RightShadow from "./banner_right_shadow.png"
 
 import {
   SearchInputProps,
@@ -137,16 +137,26 @@ const BannerLeftShadow = styled.div`
   margin-left: ${px2vw(6)};
   width: ${px2vw(679.73)};
   height: ${px2vw(52)};
-  background-image: url(${LeftShadow});
+  background: linear-gradient(to top left,#fff 0,#fff 50%,#0d0b0c 0,#0d0b0c);
+  filter: blur(${px2vw(4)});
+  opacity: 0.4;
+  /**
+  background-image: url(LeftShadow);
   background-position-y: ${px2vw(64)};
+  */
 `;
 
 const BannerRightShadow = styled.div`
   margin-right: ${px2vw(6)};
   width: ${px2vw(679.73)};
   height: ${px2vw(52)};
-  background-image: url(${RightShadow});
+  background: linear-gradient(to top right,#fff 0,#fff 50%,#0d0b0c 0,#0d0b0c);
+  filter: blur(${px2vw(4)});
+  opacity: 0.4;
+  /**
+  background-image: url(RightShadow);
   background-position-y: ${px2vw(64)};
+  */
 `;
 
 function SearchBanner() {

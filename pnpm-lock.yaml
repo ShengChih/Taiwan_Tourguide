@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@eslint/create-config': ^0.2.0
+  '@pnpm/exe': ^7.7.0
   '@reduxjs/toolkit': ^1.8.3
   '@types/react': ^18.0.15
   '@types/react-dom': ^18.0.6
@@ -44,6 +45,7 @@ specifiers:
   vite-plugin-mock: ^2.9.6
 
 dependencies:
+  '@pnpm/exe': 7.7.0
   '@reduxjs/toolkit': 1.8.3_kkwg4cbsojnjnupd3btipussee
   axios: 0.26.1
   classnames: 2.3.1
@@ -497,6 +499,63 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+
+  /@pnpm/exe/7.7.0:
+    resolution: {integrity: sha512-9wvfvzp6mErqaT8L/aSCvTWiLqqIGhw2jycE20NDZqSNxN3NKBSJF3d0QB5+HSSuYBOuDzap93S7/V9MR/sGLQ==}
+    hasBin: true
+    requiresBuild: true
+    optionalDependencies:
+      '@pnpm/linux-arm64': 7.7.0
+      '@pnpm/linux-x64': 7.7.0
+      '@pnpm/macos-arm64': 7.7.0
+      '@pnpm/macos-x64': 7.7.0
+      '@pnpm/win-x64': 7.7.0
+    dev: false
+
+  /@pnpm/linux-arm64/7.7.0:
+    resolution: {integrity: sha512-Xous9o+HrtUHDIBVnIe6eeN9YFDQRd/BdMXja3Pf0ugsOD9UbnPiKXOLMWRlPHK+ajLzFFPg++9ymKLLCh4lgw==}
+    cpu: [arm64]
+    os: [linux]
+    hasBin: true
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@pnpm/linux-x64/7.7.0:
+    resolution: {integrity: sha512-LxFa2ObQhx2BRTi4+zSkfzQ7fx/htLAPDjHBG3xIaKp++c5Lb1MY6eIsgRZR+bbnI+kxu1GYFcTFbep9DsPwDg==}
+    cpu: [x64]
+    os: [linux]
+    hasBin: true
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@pnpm/macos-arm64/7.7.0:
+    resolution: {integrity: sha512-0IRk7xMt599v6M4qu8Rm2J/Uw8X9DbkEIqG20CJM1rVPo2CNkJGBWcVPHBw1zh/cCL6kxC8qYVYOJQr0CgpcMg==}
+    cpu: [arm64]
+    os: [darwin]
+    hasBin: true
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@pnpm/macos-x64/7.7.0:
+    resolution: {integrity: sha512-kcRHFlOSl1sbLSw7Qsc3Oeoh+SxzXH4v7lDwbt7xe2BPqDa1viGVHwW545l9tIoO5brWe3dY5iSEWmCTca887w==}
+    cpu: [x64]
+    os: [darwin]
+    hasBin: true
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@pnpm/win-x64/7.7.0:
+    resolution: {integrity: sha512-nsnz/9uj9uhEAHEETZh5CbUM85JG+BuBrqERJGqkcIg8vdxv9rNhiVcyRKtPw9kULQuSNV2spsNdEJTRNGXk+w==}
+    cpu: [x64]
+    os: [win32]
+    hasBin: true
+    requiresBuild: true
+    dev: false
+    optional: true
 
   /@redux-saga/core/1.1.3:
     resolution: {integrity: sha512-8tInBftak8TPzE6X13ABmEtRJGjtK17w7VUs7qV17S8hCO5S3+aUTWZ/DBsBJPdE8Z5jOPwYALyvofgq1Ws+kg==}

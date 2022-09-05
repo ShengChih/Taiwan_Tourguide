@@ -11,6 +11,7 @@
     "lint": "eslint --fix --ext .js,.tsx,ts src mock"
   },
   "dependencies": {
+    "@pnpm/exe": "^7.7.0",
     "@reduxjs/toolkit": "^1.8.3",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
