@@ -79,6 +79,14 @@ export default defineConfig(({ command }: ConfigEnv) => {
         {
           find: '@api',
           replacement: '/src/api'
+        },
+        {
+          find: '@store',
+          replacement: '/src/store'
+        },
+        {
+          find: '@features',
+          replacement: '/src/store/features'
         }
       ]
     },

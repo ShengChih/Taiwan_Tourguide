@@ -1,4 +1,5 @@
-import { AxiosRequestConfig } from 'axios'
+import type { BaseQueryFn } from '@reduxjs/toolkit/query'
+import type { AxiosRequestConfig, AxiosError } from 'axios'
 import HttpClient from "./HttpClient"
 import qs from 'qs'
 
@@ -114,6 +115,30 @@ export default class TDXApi extends HttpClient {
 		this._initializeRequestIntercepter()
 	}
 
+	public getBaseQuery = (): BaseQueryFn<
+    {
+      url: string
+      method: AxiosRequestConfig['method']
+      data?: AxiosRequestConfig['data']
+      params?: AxiosRequestConfig['params']
+    },
+    unknown,
+    unknown
+  > => async ({ url, method, data, params }) => {
+    try {
+      const result = await this.instance({ url: url, method, data, params })
+      return { data: result.data }
+    } catch (axiosError) {
+      let err = axiosError as AxiosError
+      return {
+        error: {
+          status: err.response?.status,
+          data: err.response?.data || err.message,
+        },
+      }
+    }
+  }
+
 	public auth = () => {
 		return this.instance.post(
 			'/auth/realms/TDXConnect/protocol/openid-connect/token',
@@ -128,6 +153,25 @@ export default class TDXApi extends HttpClient {
 				}
 			}
 		)
+	}
+
+	public genTourismUrl = (params: CityInfoGet, apiPart: string) => {
+		const { City, ...others } = params
+		const $format = others.hasOwnProperty('$format')
+			? {}
+			: {
+				$format: 'JSON'
+			}
+		const url = `/api/basic/v2/Tourism/${apiPart}`.concat(
+			(!!City && typeof City === 'string' ? `/${City}` : '')
+		).concat(qs.stringify({
+			...others,
+			...$format
+		}, { addQueryPrefix: true }))
+
+		return {
+			url: url
+		}
 	}
 
 	public getCities = (params: ODataQuery) => {
@@ -147,19 +191,7 @@ export default class TDXApi extends HttpClient {
 
 	protected getTourismApi = (apiPart: string) => {
 		return (params: CityInfoGet) => {
-			const { City, ...others } = params
-			const $format = others.hasOwnProperty('$format')
-				? {}
-				: {
-					$format: 'JSON'
-				}
-			const url = `/api/basic/v2/Tourism/${apiPart}`.concat(
-				(!!City && typeof City === 'string' ? `/${City}` : '')
-			).concat(qs.stringify({
-				...others,
-				...$format
-			}, { addQueryPrefix: true }))
-
+			const { url } = this.genTourismUrl(params, apiPart)
 			return this.instance.get(url)
 		}
 	}
@@ -180,3 +212,11 @@ export default class TDXApi extends HttpClient {
 		return this.getTourismApi('Activity')(params)
 	}
 }
+
+
+
+type PaddedNumber = `${'0' | ''}${number}`
+type ISODate = `${number}-${PaddedNumber}-${PaddedNumber}`
+type ISOTime = `${PaddedNumber}:${PaddedNumber}:${PaddedNumber}`
+type ISOString = `${ISODate}T${ISOTime}Z`
+
